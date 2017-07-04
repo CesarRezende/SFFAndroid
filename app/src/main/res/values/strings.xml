@@ -1,0 +1,64 @@
+<resources>
+    <string name="app_name">Sistema Familiar Financeiro</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Configurações</string>
+
+    <string-array name="menu_options">
+        <item>Dashboard</item>
+        <item>Movimentação Finaceira</item>
+        <!--<item>Entrada Variavel</item>
+        <item>Saida Variavel</item>
+        <item>Entrada Fixa</item>
+        <item>Saida Fixa</item>-->
+        <item>Alterar Usuario</item>
+        <item>Sair</item>
+    </string-array>
+
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="ok_button">OK</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="action_search">Pesquisa</string>
+    <string name="action_insert">Inserir</string>
+    <string name="action_edit">Editar</string>
+    <string name="action_erase">Apagar</string>
+    <string name="action_accomplish">Realizar</string>
+    <string name="image_contentDescription">Imagem</string>
+    <string name="title_activity_settings">Configurações</string>
+    <string name="webservice_address">Endereço Webservice:</string>
+    <string name="local_webservice_address">Endereço Webservice Rede Local:</string>
+    <string name="title_activity_mov_financ">Movimentação Financeira</string>
+    <string name="movfinanc_id_label">ID:</string>
+    <string name="movfinanc_releasedate_label_short">Dt Lançamento:</string>
+    <string name="movfinanc_releasedate_label_full">Data Lançamento:</string>
+    <string name="movfinanc_expecteddate_label_short">Dt Prevista:</string>
+    <string name="movfinanc_expecteddate_label_full">Data Prevista:</string>
+    <string name="movfinanc_fulfillmentdate_label_short">Dt Realizada:</string>
+    <string name="movfinanc_fulfillmentdate_label_full">Data Realizada:</string>
+    <string name="movfinanc_status_label">Situação:</string>
+    <string name="movfinanc_status_expected_opt">Previsto</string>
+    <string name="movfinanc_status_accomplish_opt">Realizado</string>
+    <string name="movfinanc_movtype_label_short">Tipo Mov:</string>
+    <string name="movfinanc_movtype_label_long">Tipo Movimentação:</string>
+    <string name="movfinanc_movtype_credit_opt">Crédito</string>
+    <string name="movfinanc_movtype_debit_opt">Débito</string>
+    <string name="movfinanc_manual_label">Manual</string>
+    <string name="movfinanc_value_label">Valor:</string>
+    <string name="movfinanc_fine_label">Multa:</string>
+    <string name="movfinanc_discount_label">Desconto:</string>
+    <string name="movfinanc_interest_rate_label">Juros:</string>
+    <string name="movfinanc_spend_type_label">Tipo Gasto:</string>
+    <string name="movfinanc_descr_label">Descrição:</string>
+
+    <string name="title_activity_login">Sistema Financeiro Familiar</string>
+    <string name="title_activity_date_chooser">Calendário</string>
+    <string name="login_label">Login</string>
+    <string name="login_user_label">Usuario:</string>
+    <string name="login_password_label">Senha:</string>
+    <string name="login_exit_button">Sair</string>
+
+    <string name="alert_dialog_title">Atenção</string>
+</resources>
