@@ -1,15 +1,15 @@
 package sffmobile.cesar.com.br.sffmobile;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 
-public class SettingsActivity extends Activity {
+public class SettingsActivity extends AppCompatActivity {
 
 	final static String APP_PREFS = "APP_PREFS";
 	final static String WEBSERV_ADRRES = "WEBSERV_ADRRES";
@@ -34,7 +34,7 @@ public class SettingsActivity extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-
+		super.onCreateOptionsMenu(menu);
 		getMenuInflater().inflate(R.menu.settings, menu);
 		return true;
 	}

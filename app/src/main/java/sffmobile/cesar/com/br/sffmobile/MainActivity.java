@@ -1,6 +1,9 @@
 package sffmobile.cesar.com.br.sffmobile;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,18 +16,57 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ActionMode;
+import android.widget.TextView;
+import android.widget.EditText;
+import android.graphics.drawable.Drawable;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private static final String SEARCH_OPENED = "search_opened";
+    private static final String SEARCH_QUERY = "seach_qury";
+    private static final String MENU_POSITION = "MENU_POSITION";
     public static final int loginRequestCode = 1;
     public static final int settingsRequestCode = 2;
     public static final int MovFinancEditRequestCode = 3;
     public static final int MovFinancInsertRequestCode = 4;
-    private String[] mMenuOptions;
     private CharSequence mTitle;
+    private String[] mMenuOptions;
+    private boolean mSearchOpened;
+    private String mSearchQuery;
+    private Drawable mIconOpenSearch;
+    private Drawable mIconCloseSearch;
+    private EditText mSearchEt;
+    private MenuItem mSearchAction;
+    private MenuItem mInsertAction;
+    private MenuItem mSettingAction;
+    //private ContentFragment contentFragment;
+   // private ListSearchListener listSearchListener;
+    private ActionMode.Callback listItemActionMode;
+    private SharedPreferences prefs;
+    private static boolean authoriedUser = false;
+    private static boolean ocurredError = false;
+    private TextView yearMonthField;
+    private View yearmonthComponent;
 
 
+
+    public static boolean isOcurredError() {
+        return ocurredError;
+    }
+
+    public static void setOcurredError(boolean ocurredError) {
+        MainActivity.ocurredError = ocurredError;
+    }
+
+    public static boolean isAuthoriedUser() {
+        return authoriedUser;
+    }
+
+    public static void setAuthoriedUser(boolean authoriedUser) {
+        MainActivity.authoriedUser = authoriedUser;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +74,11 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         configDrawerMenu();
+
+        verifyWebServAddressesRecord();
+
+
+
     }
 
     private void configDrawerMenu() {
@@ -78,8 +125,104 @@ public class MainActivity extends AppCompatActivity
             //id do g rupo, id do item, ordem do item, nome do item
             menu.add(1, i, i, mMenuOptions[i]);
         }
+        //Seleciona item do menu
+        MenuItem selectedItem = menu.getItem(SFFApp.getMenuPosition());
+        onNavigationItemSelected(selectedItem);
 
     }
+
+    private void verifyWebServAddressesRecord() {
+
+        this.prefs = getSharedPreferences(SettingsActivity.APP_PREFS,
+                Context.MODE_PRIVATE);
+        String webserviceAddress = prefs.getString(
+                SettingsActivity.WEBSERV_ADRRES, null);
+        String localWebserviceAddress = prefs.getString(
+                SettingsActivity.LOCAL_WEBSERV_ADRRES, null);
+
+        String errorMessage = "";
+        boolean firstError = true;
+
+        if (webserviceAddress == null || webserviceAddress.equals("")) {
+            if (firstError)
+                errorMessage += "Por favor, configure Endereço Webservice!";
+            else
+                errorMessage += "\nPor favor, configure Endereço Webservice!";
+
+            firstError = false;
+            setOcurredError(true);
+        }
+
+        if (localWebserviceAddress == null || localWebserviceAddress.equals("")) {
+            if (firstError)
+                errorMessage += "Por favor, configure Endereço Webservice Rede Local!";
+            else
+                errorMessage += "\nPor favor, configure Endereço Webservice Rede Local!";
+
+            firstError = false;
+            setOcurredError(true);
+        }
+
+        if (isOcurredError()) {
+
+            AlertDialog dialog = new AlertDialog();
+            dialog.setTitle("Erro");
+            dialog.setContext( MainActivity.this);
+            dialog.setMessage(errorMessage);
+            dialog.setOnClickListener(new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    Intent settingActivityCaller = new Intent(
+                            MainActivity.this, SettingsActivity.class);
+                    startActivityForResult(settingActivityCaller,
+                            settingsRequestCode);
+                    setOcurredError(false);
+                }
+            });
+
+            dialog.show(getFragmentManager(), "Erro");
+
+            return;
+        }
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == loginRequestCode) {
+
+            if (resultCode == RESULT_OK) {
+                //MainActivity.setAuthoriedUser(true);
+                finish();
+                startActivity(getIntent());
+
+            } else {
+                finish();
+            }
+
+        } else if (requestCode == settingsRequestCode) {
+
+            finish();
+            startActivity(getIntent());
+        }
+
+        else if (requestCode == MovFinancEditRequestCode) {
+
+            if (resultCode == RESULT_OK) {
+
+            } else {
+
+            }
+
+        }
+
+    }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
