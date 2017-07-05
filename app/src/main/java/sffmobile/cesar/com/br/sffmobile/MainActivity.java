@@ -2,6 +2,7 @@ package sffmobile.cesar.com.br.sffmobile;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -73,11 +74,23 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //setYearMonthComponent();
+
         configDrawerMenu();
 
         verifyWebServAddressesRecord();
 
+        if (!isOcurredError())
+            verifyLoginRecord();
 
+
+        if (savedInstanceState == null) {
+            mSearchOpened = false;
+            mSearchQuery = "";
+        } else {
+            mSearchOpened = savedInstanceState.getBoolean(SEARCH_OPENED);
+            mSearchQuery = savedInstanceState.getString(SEARCH_QUERY);
+        }
 
     }
 
@@ -128,6 +141,19 @@ public class MainActivity extends AppCompatActivity
         //Seleciona item do menu
         MenuItem selectedItem = menu.getItem(SFFApp.getMenuPosition());
         onNavigationItemSelected(selectedItem);
+
+    }
+
+    private void verifyLoginRecord() {
+        prefs = getSharedPreferences(SettingsActivity.APP_PREFS, MODE_PRIVATE);
+        setAuthoriedUser(prefs.getBoolean(LoginActivity.AUTHORIZED_USER, false));
+
+        if (!isAuthoriedUser()) {
+            Intent loginActivitycaller = new Intent(MainActivity.this,
+                    LoginActivity.class);
+            startActivityForResult(loginActivitycaller, loginRequestCode);
+
+        }
 
     }
 
@@ -311,32 +337,33 @@ public class MainActivity extends AppCompatActivity
 
         if (mMenuOptions[position].equals("Alterar Usuario")) {
 
-//            SFFApp.setMenuPosition(0);
-//
-//            Editor editor = prefs.edit();
-//            editor.putBoolean(LoginActivity.AUTHORIZED_USER, false);
-//            editor.putString(LoginActivity.USER_ID, "");
-//            editor.putString(LoginActivity.USER_PASSWORD, "");
-//            editor.commit();
-//
-//            Intent intent = new Intent();
-//            setResult(RESULT_OK, intent);
-//
-//            finish();
-//
-//            Intent loginActivitycaller = new Intent(MainActivity.this,
-//                    LoginActivity.class);
-//            startActivityForResult(loginActivitycaller, 1);
+            SFFApp.setMenuPosition(0);
+
+            Editor editor = prefs.edit();
+            editor.putBoolean(LoginActivity.AUTHORIZED_USER, false);
+            editor.putString(LoginActivity.USER_ID, "");
+            editor.putString(LoginActivity.USER_PASSWORD, "");
+            editor.commit();
+
+            Intent intent = new Intent();
+            setResult(RESULT_OK, intent);
+
+            finish();
+
+            Intent loginActivitycaller = new Intent(MainActivity.this,
+                    LoginActivity.class);
+            startActivityForResult(loginActivitycaller, 1);
 //
 //            if (mDrawerLayout.isDrawerOpen(mDrawerList))
 //                mDrawerLayout.closeDrawer(mDrawerList);
 
-//            return;
+            return true;
         }else if(mMenuOptions[position].equals("Sair")){
 
             SFFApp.setMenuPosition(0);
             finish();
 
+            return true;
         }
 
 //        contentFragment = new ContentFragment();
