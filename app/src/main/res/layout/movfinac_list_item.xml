@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="3sp"
+    android:paddingBottom="3sp">
+
+
+        <ImageView
+            android:id="@+id/list_item_image"
+            android:layout_width="30sp"
+            android:layout_height="30sp"
+            android:contentDescription="@string/image_contentDescription"
+            android:padding="5sp"
+            android:singleLine="true"
+            android:layout_marginRight="10sp" />
+            
+
+        <TextView 
+            android:id="@+id/list_item_descr"
+            android:textSize="15sp"
+            android:layout_width="250sp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10sp"
+            android:layout_toRightOf="@id/list_item_image"
+            
+             />
+
+         <TextView 
+            android:id="@+id/list_item_coin_symbol"
+            android:textSize="15sp"
+            android:layout_width="20sp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40sp"
+            android:layout_marginRight="0sp"
+            android:text="R$"
+            android:layout_below="@id/list_item_descr"
+            android:layout_alignParentLeft="true"
+            
+             />
+        <TextView 
+            android:id="@+id/list_item_saldo"
+            android:textSize="15sp"
+            android:layout_width="75sp"
+            android:layout_height="wrap_content"           
+            android:singleLine="true"
+            android:textAlignment="gravity"
+            android:gravity="right"
+            android:layout_marginRight="10sp"
+            android:layout_below="@id/list_item_descr"
+            android:layout_toRightOf="@id/list_item_coin_symbol"/>
+
+         
+          <TextView 
+            android:id="@+id/list_expected_date"
+            android:textSize="15sp"
+            android:layout_width="45sp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10sp"
+            android:singleLine="true"
+            android:layout_below="@id/list_item_descr"
+            android:layout_toRightOf="@id/list_item_saldo"/>
+          
+          <TextView 
+            android:id="@+id/list_fulfillment_date"
+            android:textSize="15sp"
+            android:layout_width="70sp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="2sp"
+            android:singleLine="true"
+            android:layout_below="@id/list_item_descr"
+            android:layout_toRightOf="@id/list_expected_date"/>
+          
+           <ImageView
+            android:id="@+id/list_item_fulfillment_image"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:contentDescription="@string/image_contentDescription"
+            android:padding="5sp"
+            android:src="@drawable/success"
+            android:layout_toRightOf="@id/list_item_descr"/>
+</RelativeLayout>

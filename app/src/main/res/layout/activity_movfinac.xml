@@ -1,0 +1,457 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+
+    <RelativeLayout
+        
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="br.com.cesar.android.sff.MovFinancActivity" >
+
+        <TextView
+            android:id="@+id/movfinac_id_label"
+            android:layout_width="30sp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:padding="3sp"
+            android:text="@string/movfinanc_id_label"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/movfinac_id_field"
+            android:layout_width="70sp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="10sp"
+            android:layout_toRightOf="@id/movfinac_id_label"
+            android:background="@drawable/view_border"
+            android:enabled="false"
+            android:inputType="number"
+            android:padding="3sp"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/movfinanc_releasedate_label"
+            android:layout_width="120sp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@id/movfinac_id_field"
+            android:padding="3sp"
+            android:text="@string/movfinanc_releasedate_label_short"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/movfinanc_releasedate_field"
+            android:layout_width="90sp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="10sp"
+            android:layout_toRightOf="@id/movfinanc_releasedate_label"
+            android:background="@drawable/view_border"
+            android:enabled="false"
+            android:inputType="date"
+            android:padding="3sp"
+            android:textAlignment="gravity" 
+            android:gravity="center_horizontal"
+            android:textSize="15sp" />
+
+        <View
+            android:id="@+id/first_separator"
+            android:layout_width="fill_parent"
+            android:layout_height="0.2dp"
+            android:layout_below="@id/movfinac_id_label"
+            android:layout_marginBottom="15sp"
+            android:layout_marginTop="15sp"
+            android:background="@android:color/darker_gray"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/movfinanc_status_label"
+            android:layout_width="80sp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/first_separator"
+            android:layout_marginTop="3sp"
+            android:padding="3sp"
+            android:text="@string/movfinanc_status_label"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <RadioGroup
+            android:id="@+id/status_radio_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/first_separator"
+            android:layout_toRightOf="@id/movfinanc_status_label"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/movfinanc_status_expected_opt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/movfinanc_status_expected_opt"
+                android:textSize="15sp" />
+
+            <RadioButton
+                android:id="@+id/movfinanc_status_accomplish_opt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/movfinanc_status_accomplish_opt"
+                android:textSize="15sp" />
+        </RadioGroup>
+
+        <View
+            android:id="@+id/second_separator"
+            android:layout_width="fill_parent"
+            android:layout_height="0.2dp"
+            android:layout_below="@id/movfinanc_status_label"
+            android:layout_marginBottom="15sp"
+            android:layout_marginTop="15sp"
+            android:background="@android:color/darker_gray"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/movfinanc_expecteddate_label"
+            android:layout_width="100sp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/second_separator"
+            android:padding="3sp"
+            android:text="@string/movfinanc_expecteddate_label_short"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/movfinanc_expecteddate_field"
+            android:layout_width="90sp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/movfinanc_expecteddate_label"
+            android:layout_marginRight="10sp"
+            android:layout_toRightOf="@id/movfinanc_expecteddate_label"
+            android:background="@drawable/view_border"
+            android:gravity="center_horizontal"
+            android:inputType="date"
+            android:padding="3sp"
+            android:textAlignment="gravity"
+            android:textSize="15sp" />
+
+        <CheckBox
+            android:id="@+id/movfinanc_manual_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:layout_alignBaseline="@id/movfinanc_expecteddate_field"
+            android:layout_alignBottom="@id/movfinanc_expecteddate_field"
+            android:layout_toRightOf="@id/movfinanc_expecteddate_field"
+            android:text="@string/movfinanc_manual_label"
+            android:textSize="15sp" />
+
+        <View
+            android:id="@+id/third_separator"
+            android:layout_width="fill_parent"
+            android:layout_height="0.2dp"
+            android:layout_below="@id/movfinanc_expecteddate_label"
+            android:layout_marginBottom="15sp"
+            android:layout_marginTop="15sp"
+            android:background="@android:color/darker_gray"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/movfinanc_fulfillmentdate_label"
+            android:layout_width="100sp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/third_separator"
+            android:padding="3sp"
+            android:text="@string/movfinanc_fulfillmentdate_label_short"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/movfinanc_fulfillmentdate_field"
+            android:layout_width="90sp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/movfinanc_fulfillmentdate_label"
+            android:layout_marginRight="10sp"
+            android:layout_toRightOf="@id/movfinanc_fulfillmentdate_label"
+            android:background="@drawable/view_border"
+            android:gravity="center_horizontal"
+            android:inputType="date"
+            android:padding="3sp"
+            android:textAlignment="gravity"
+            android:textSize="15sp" />
+
+        <View
+            android:id="@+id/fourth_separator"
+            android:layout_width="fill_parent"
+            android:layout_height="0.2dp"
+            android:layout_below="@id/movfinanc_fulfillmentdate_label"
+            android:layout_marginBottom="15sp"
+            android:layout_marginTop="15sp"
+            android:background="@android:color/darker_gray"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/movfinanc_movtype_label"
+            android:layout_width="80sp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/fourth_separator"
+            android:layout_marginTop="3sp"
+            android:padding="3sp"
+            android:text="@string/movfinanc_movtype_label_short"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fourth_separator"
+            android:layout_alignLeft="@id/status_radio_group"
+            android:layout_toRightOf="@id/movfinanc_movtype_label"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/movfinanc_movtype_credit_opt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/movfinanc_movtype_credit_opt"
+                android:textSize="15sp" />
+
+            <RadioButton
+                android:id="@+id/movfinanc_movtype_debit_opt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5sp"
+                android:text="@string/movfinanc_movtype_debit_opt"
+                android:textSize="15sp" />
+        </RadioGroup>
+
+        <View
+            android:id="@+id/fiveth_separator"
+            android:layout_width="fill_parent"
+            android:layout_height="0.2dp"
+            android:layout_below="@id/movfinanc_movtype_label"
+            android:layout_marginBottom="15sp"
+            android:layout_marginTop="15sp"
+            android:background="@android:color/darker_gray"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/movfinanc_descr_label"
+            android:layout_width="100sp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/fiveth_separator"
+            android:padding="3sp"
+            android:text="@string/movfinanc_descr_label"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/movfinanc_descr_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/movfinanc_descr_label"
+            android:layout_marginRight="10sp"
+            android:layout_toRightOf="@id/movfinanc_descr_label"
+            android:background="@drawable/view_border"
+            android:gravity="left"
+            android:inputType="textCapWords"
+            android:padding="3sp"
+            android:textAlignment="gravity"
+            android:textSize="15sp" />
+
+        <View
+            android:id="@+id/sixth_separator"
+            android:layout_width="fill_parent"
+            android:layout_height="0.2dp"
+            android:layout_below="@id/movfinanc_descr_label"
+            android:layout_marginBottom="15sp"
+            android:layout_marginTop="15sp"
+            android:background="@android:color/darker_gray"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/movfinanc_value_label"
+            android:layout_width="100sp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/sixth_separator"
+            android:padding="3sp"
+            android:text="@string/movfinanc_value_label"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/movfinanc_value_field"
+            android:layout_width="90sp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/movfinanc_value_label"
+            android:layout_marginRight="10sp"
+            android:layout_toRightOf="@id/movfinanc_value_label"
+            android:background="@drawable/view_border"
+            android:gravity="left"
+            android:inputType="numberDecimal"
+            android:padding="3sp"
+            android:textAlignment="gravity"
+            android:textSize="15sp" />
+
+        <View
+            android:id="@+id/seventh_separator"
+            android:layout_width="fill_parent"
+            android:layout_height="0.2dp"
+            android:layout_below="@id/movfinanc_value_label"
+            android:layout_marginBottom="15sp"
+            android:layout_marginTop="15sp"
+            android:background="@android:color/darker_gray"
+            android:visibility="visible" />
+        
+         <TextView
+            android:id="@+id/movfinanc_discount_label"
+            android:layout_width="100sp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/seventh_separator"
+            android:padding="3sp"
+            android:text="@string/movfinanc_discount_label"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/movfinanc_discount_field"
+            android:layout_width="90sp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/movfinanc_discount_label"
+            android:layout_marginRight="10sp"
+            android:layout_toRightOf="@id/movfinanc_discount_label"
+            android:background="@drawable/view_border"
+            android:gravity="left"
+            android:inputType="numberDecimal"
+            android:padding="3sp"
+            android:textAlignment="gravity"
+            android:textSize="15sp" />
+        
+        <View
+            android:id="@+id/eighth_separator"
+            android:layout_width="fill_parent"
+            android:layout_height="0.2dp"
+            android:layout_below="@id/movfinanc_discount_field"
+            android:layout_marginBottom="15sp"
+            android:layout_marginTop="15sp"
+            android:background="@android:color/darker_gray"
+            android:visibility="visible" />
+        
+        <TextView
+            android:id="@+id/movfinanc_fine_label"
+            android:layout_width="100sp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/eighth_separator"
+            android:padding="3sp"
+            android:text="@string/movfinanc_fine_label"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/movfinanc_fine_field"
+            android:layout_width="90sp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/movfinanc_fine_label"
+            android:layout_marginRight="10sp"
+            android:layout_toRightOf="@id/movfinanc_fine_label"
+            android:background="@drawable/view_border"
+            android:gravity="left"
+            android:inputType="numberDecimal"
+            android:padding="3sp"
+            android:textAlignment="gravity"
+            android:textSize="15sp" />
+        
+        <View
+            android:id="@+id/nineth_separator"
+            android:layout_width="fill_parent"
+            android:layout_height="0.2dp"
+            android:layout_below="@id/movfinanc_fine_label"
+            android:layout_marginBottom="15sp"
+            android:layout_marginTop="15sp"
+            android:background="@android:color/darker_gray"
+            android:visibility="visible" />
+        
+        <TextView
+            android:id="@+id/movfinanc_interest_rate_label"
+            android:layout_width="100sp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/nineth_separator"
+            android:padding="3sp"
+            android:text="@string/movfinanc_interest_rate_label"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/movfinanc_interest_rate_field"
+            android:layout_width="90sp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/movfinanc_interest_rate_label"
+            android:layout_marginRight="10sp"
+            android:layout_toRightOf="@id/movfinanc_interest_rate_label"
+            android:background="@drawable/view_border"
+            android:gravity="left"
+            android:inputType="numberDecimal"
+            android:padding="3sp"
+            android:textAlignment="gravity"
+            android:textSize="15sp" />
+        
+        <View
+            android:id="@+id/tenth_separator"
+            android:layout_width="fill_parent"
+            android:layout_height="0.2dp"
+            android:layout_below="@id/movfinanc_interest_rate_label"
+            android:layout_marginBottom="15sp"
+            android:layout_marginTop="15sp"
+            android:background="@android:color/darker_gray"
+            android:visibility="visible" />
+         
+         <TextView
+            android:id="@+id/movfinanc_spend_type_label"
+            android:layout_width="100sp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/tenth_separator"
+            android:padding="3sp"
+            android:text="@string/movfinanc_spend_type_label"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+         <Spinner
+             android:id="@+id/movfinanc_spend_type_field"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:textSize="15sp"
+             android:layout_alignBottom="@id/movfinanc_spend_type_label"
+             android:layout_alignLeft="@id/movfinanc_interest_rate_field"
+             android:layout_alignTop="@id/movfinanc_spend_type_label"
+             android:background="@drawable/view_border" />
+         
+         <View
+            android:id="@+id/eleventh_separator"
+            android:layout_width="fill_parent"
+            android:layout_height="0.2dp"
+            android:layout_below="@id/movfinanc_spend_type_label"
+            android:layout_marginBottom="15sp"
+            android:layout_marginTop="15sp"
+            android:background="@android:color/darker_gray"
+            android:visibility="visible" />
+        
+    </RelativeLayout>
+
+</ScrollView>
