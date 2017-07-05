@@ -1,0 +1,18 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="br.com.cesar.android.sff.SettingsActivity" >
+
+    
+    <item
+        android:id="@+id/settings_ok_button"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:title="@string/ok_button"/>
+
+    <item
+        android:id="@+id/settings_cancel_button"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:title="@string/cancel_button"/>
+
+</menu>
