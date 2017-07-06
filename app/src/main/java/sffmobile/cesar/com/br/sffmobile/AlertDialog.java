@@ -33,9 +33,6 @@ public class AlertDialog extends DialogFragment{
 		
 		return dialog;
 	}
-	
-	
-	
 
 	public String getMessage() {
 		return message;

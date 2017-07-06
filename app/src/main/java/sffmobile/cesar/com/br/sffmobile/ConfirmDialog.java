@@ -14,18 +14,11 @@ public class ConfirmDialog extends DialogFragment{
 	private Context context;
 	private OnClickListener onOkClickListener;
 	private OnClickListener onCancelClickListener;
-	
-	
-	public ConfirmDialog(String title, String message, Context context, OnClickListener onOkClickListener, OnClickListener onNoClickListener) {
-		super();
-		this.title = title;
-		this.message = message;
-		this.context = context;
-		this.onOkClickListener = onOkClickListener;
-		this.onCancelClickListener = onNoClickListener;
-	}
-	
 
+
+	public ConfirmDialog() {
+		super();
+	}
 
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -40,9 +33,9 @@ public class ConfirmDialog extends DialogFragment{
 		
 		return dialog;
 	}
-	
-	
-	
+
+
+
 
 	public String getMessage() {
 		return message;
@@ -51,5 +44,36 @@ public class ConfirmDialog extends DialogFragment{
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	
+
+	public String getTitle(){
+		return this.title;
+	}
+
+	public void setTitle(String title){
+		this.title = title;
+	}
+
+	public Context getContext(){
+		return this.context;
+	}
+
+	public void setContext(Context context){
+		this.context = context;
+	}
+
+	public OnClickListener getOnOkClickListener(){
+		return this.onOkClickListener;
+	}
+
+	public void setOnOkClickListener(OnClickListener onOkClickListener){
+		this.onOkClickListener = onOkClickListener;
+	}
+
+	public OnClickListener getOnCancelClickListener(){
+		return this.onCancelClickListener;
+	}
+
+	public void setOnCancelClickListener(OnClickListener onCancelClickListener){
+		this.onCancelClickListener = onCancelClickListener;
+	}
 }

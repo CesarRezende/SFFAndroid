@@ -2,7 +2,6 @@ package sffmobile.cesar.com.br.sffmobile;
 
 import java.util.List;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;

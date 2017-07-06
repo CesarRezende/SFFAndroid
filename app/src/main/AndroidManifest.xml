@@ -30,7 +30,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="sffmobile.cesar.com.br.sffmobile.MainActivity" />
         </activity>
-
+        <activity
+            android:name=".MovFinancActivity"
+            android:label="@string/title_activity_mov_financ"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="sffmobile.cesar.com.br.sffmobile.MainActivity" />
+        </activity>
+        <activity
+            android:name=".DateChooserActivity"
+            android:label="@string/title_activity_date_chooser"
+            android:parentActivityName=".MovFinancActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="sffmobile.cesar.com.br.sffmobile.DateChooserActivity" />
+        </activity>
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"

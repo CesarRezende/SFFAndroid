@@ -1,16 +1,16 @@
 package sffmobile.cesar.com.br.sffmobile;
 
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.CalendarView;
 import android.widget.CalendarView.OnDateChangeListener;
 import java.util.Date;
 
-public class DateChooserActivity extends Activity {
+public class DateChooserActivity extends AppCompatActivity {
     public static final String DATE_STRING_PARAM_VALUE = "DATE_STRING_PARAM_VALUE";
     public static final String TEXT_FIELD_PARAM_ID = "TEXT_FIELD_PARAM_ID";
     private long currentDate;

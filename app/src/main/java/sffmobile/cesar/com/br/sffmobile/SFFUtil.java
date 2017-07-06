@@ -225,7 +225,7 @@ public class SFFUtil {
 		Calendar dateC = Calendar.getInstance();
 		dateC.setTime(date);
 		
-		isDateThatYearMonth = dateC.get(Calendar.YEAR) == year && dateC.get(Calendar.MONTH) == (month -1); 
+		isDateThatYearMonth = dateC.get(Calendar.YEAR) == year && (int)dateC.get(Calendar.MONTH) == (month -1);
 		
 		return isDateThatYearMonth;
 		

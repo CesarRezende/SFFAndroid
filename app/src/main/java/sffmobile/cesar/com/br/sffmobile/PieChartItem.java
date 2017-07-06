@@ -54,7 +54,7 @@ public class PieChartItem extends ChartItem {
 					this.legendLabels.get(e.getXIndex())
 							+ " - "
 							+ SFFUtil.getFormattedNumber(this.pieChartValues
-									.get(e.getXIndex())), 0).show();
+									.get(e.getXIndex())), Toast.LENGTH_SHORT).show();
 		}
 
 		public void onNothingSelected() {

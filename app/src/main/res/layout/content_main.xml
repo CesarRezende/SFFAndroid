@@ -8,5 +8,29 @@
     tools:context="sffmobile.cesar.com.br.sffmobile.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
+    <android.support.v7.widget.LinearLayoutCompat
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+
+    <include
+        layout="@layout/yearmonth_component"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+        <View android:id="@id/first_separator" android:background="#000000"
+        android:visibility="visible"
+        android:layout_width="fill_parent"
+        android:layout_height="0.2dp" />
+
+        <FrameLayout
+        android:id="@+id/content_frame"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="8dp" />
+
+    </android.support.v7.widget.LinearLayoutCompat>
 
 </android.support.constraint.ConstraintLayout>
