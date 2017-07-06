@@ -1,32 +1,60 @@
 package sffmobile.cesar.com.br.sffmobile;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+
+import android.annotation.SuppressLint;
+import android.app.ActionBar;
+import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.ListFragment;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.content.Context;
-import android.content.DialogInterface;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.ActionMode;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.ActionMode;
-import android.widget.TextView;
-import android.widget.EditText;
-import android.graphics.drawable.Drawable;
+
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private static final String SEARCH_OPENED = "search_opened";
-    private static final String SEARCH_QUERY = "seach_qury";
+    private static final String SEARCH_OPENED = "SEARCH_OPENED";
+    private static final String SEARCH_QUERY = "SEARCH_QUERY";
     private static final String MENU_POSITION = "MENU_POSITION";
     public static final int loginRequestCode = 1;
     public static final int settingsRequestCode = 2;
@@ -53,6 +81,7 @@ public class MainActivity extends AppCompatActivity
 
 
 
+
     public static boolean isOcurredError() {
         return ocurredError;
     }
@@ -69,12 +98,18 @@ public class MainActivity extends AppCompatActivity
         MainActivity.authoriedUser = authoriedUser;
     }
 
+
+    @Override
+    protected void onDestroy() {
+
+        super.onDestroy();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //setYearMonthComponent();
+        setYearMonthComponent();
 
         configDrawerMenu();
 
@@ -108,21 +143,19 @@ public class MainActivity extends AppCompatActivity
             public void onDrawerClosed(View view) {
                 //getActionBar().setTitle(mTitle);
                 invalidateOptionsMenu();
+                yearmonthComponent.setVisibility(View.VISIBLE);
+
             }
 
             public void onDrawerOpened(View drawerView) {
                 //getActionBar().setTitle(mTitle);
                 invalidateOptionsMenu();
+                yearmonthComponent.setVisibility(View.GONE);
                 //closeSearchBar();
             }
 
             public void onDrawerSlide(View drawerView, float slideOffset) {
                 super.onDrawerSlide(drawerView, slideOffset);
-//                if (mDrawerLayout.isDrawerOpen(MainActivity.this.mDrawerList)) {
-//                    yearmonthComponent.setVisibility(View.VISIBLE);
-//                } else {
-//                    yearmonthComponent.setVisibility(View.GONE);
-//                }
             }
         };
 
@@ -215,6 +248,52 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    private void renderYearMonthComponent() {
+        this.yearmonthComponent = findViewById(R.id.yearmonth_component);
+        this.yearMonthField = (TextView) findViewById(R.id.year_month_field);
+        String yearMonthStr = Integer.toString(SFFApp.getYearMonth());
+        this.yearMonthField.setText(yearMonthStr.substring(4) + "/" + yearMonthStr.substring(0, 3));
+    }
+
+    private void resetActivity() {
+        finish();
+        startActivity(getIntent());
+    }
+
+    private void setYearMonthComponent() {
+        if (SFFApp.getYearMonth() <= 0) {
+            SFFApp.setYearMonth(Calendar.getInstance());
+        }
+        renderYearMonthComponent();
+        ImageButton nextYearMonthButton = (ImageButton) findViewById(R.id.next_yearmonth_button);
+        ((ImageButton) findViewById(R.id.previews_yearmonth_button)).setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Calendar date = Calendar.getInstance();
+                date.set(SFFApp.getYear(),
+                        SFFApp.getMonth() - 1,
+                        1);
+                date.add(Calendar.MONTH, -1);
+                SFFApp.setYearMonth(date);
+                resetActivity();
+            }
+        });
+        nextYearMonthButton.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Calendar date = Calendar.getInstance();
+                date.set(SFFApp.getYear(),
+                        SFFApp.getMonth() - 1,
+                        1);
+                date.add(Calendar.MONTH, +1);
+                SFFApp.setYearMonth(date);
+                resetActivity();
+            }
+        });
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -223,7 +302,7 @@ public class MainActivity extends AppCompatActivity
         if (requestCode == loginRequestCode) {
 
             if (resultCode == RESULT_OK) {
-                //MainActivity.setAuthoriedUser(true);
+                MainActivity.setAuthoriedUser(true);
                 finish();
                 startActivity(getIntent());
 
