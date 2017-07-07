@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.CalendarView;
 import android.widget.CalendarView.OnDateChangeListener;
+
+import java.util.Calendar;
 import java.util.Date;
 
 public class DateChooserActivity extends AppCompatActivity {
@@ -30,21 +32,16 @@ public class DateChooserActivity extends AppCompatActivity {
         calendar.setOnDateChangeListener(new OnDateChangeListener() {
 			
 			@Override
-			public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-	            CalendarView calendarView = view;
-	            if (DateChooserActivity.this.currentDate != calendarView.getDate()) {
-	                DateChooserActivity.this.returnDateStrValue(SFFUtil.getFormattedData(new Date(calendarView.getDate())));
-	            }
-			}
+                public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
+                    CalendarView calendarView = view;
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.set(year,month,dayOfMonth);
+
+                    DateChooserActivity.this.returnDateStrValue(SFFUtil.getFormattedData(calendar.getTime()));
+                }
 			
 		});
-        calendar.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View view) {
-	            DateChooserActivity.this.returnDateStrValue(SFFUtil.getFormattedData(new Date(((CalendarView) view).getDate())));
-	        }
-		});
+
     }
 
     private void returnDateStrValue(String dataStrValue) {
