@@ -19,6 +19,17 @@
             android:title="@string/app_name"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
+        <include
+            layout="@layout/search_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!--<EditText-->
+            <!--android:id="@+id/etSearch"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:inputType="text"/>-->
+
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_main" />

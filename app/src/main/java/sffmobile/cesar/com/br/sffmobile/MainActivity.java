@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Locale;
 
 import android.annotation.SuppressLint;
-import android.app.ActionBar;
 import android.app.FragmentManager;
 import android.app.ListFragment;
 import android.app.ProgressDialog;
@@ -20,7 +19,6 @@ import android.content.SharedPreferences.Editor;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -59,16 +57,15 @@ public class MainActivity extends AppCompatActivity
     public static final int settingsRequestCode = 2;
     public static final int MovFinancEditRequestCode = 3;
     public static final int MovFinancInsertRequestCode = 4;
-    private CharSequence mTitle;
     private String[] mMenuOptions;
     private boolean mSearchOpened;
     private String mSearchQuery;
-    private Drawable mIconOpenSearch;
-    private Drawable mIconCloseSearch;
     private EditText mSearchEt;
     private MenuItem mSearchAction;
+    private MenuItem mCloseSearchAction;
     private MenuItem mInsertAction;
     private MenuItem mSettingAction;
+    View filterSearch;
     private ContentFragment contentFragment;
     private ListSearchListener listSearchListener;
     private ActionMode.Callback listItemActionMode;
@@ -148,8 +145,8 @@ public class MainActivity extends AppCompatActivity
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close){
 
+
             public void onDrawerClosed(View view) {
-                //getActionBar().setTitle(mTitle);
                 invalidateOptionsMenu();
                 yearmonthComponent.setVisibility(View.VISIBLE);
                 MainActivity.setDrawerOpen(false);
@@ -157,11 +154,10 @@ public class MainActivity extends AppCompatActivity
             }
 
             public void onDrawerOpened(View drawerView) {
-                //getActionBar().setTitle(mTitle);
                 invalidateOptionsMenu();
                 yearmonthComponent.setVisibility(View.GONE);
                 MainActivity.setDrawerOpen(true);
-                //closeSearchBar();
+                closeSearchBar();
             }
 
             public void onDrawerSlide(View drawerView, float slideOffset) {
@@ -172,10 +168,15 @@ public class MainActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
+        filterSearch = findViewById(R.id.filterSearch);
+        if(filterSearch != null)
+            filterSearch.setVisibility(View.GONE);
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         final Menu menu = navigationView.getMenu();
+
 
         for (int i =0; i < mMenuOptions.length; i++) {
             //id do g rupo, id do item, ordem do item, nome do item
@@ -359,18 +360,25 @@ public class MainActivity extends AppCompatActivity
     public boolean onPrepareOptionsMenu(Menu menu) {
 
         mSearchAction = menu.findItem(R.id.action_search);
+        mCloseSearchAction = menu.findItem(R.id.action_close_search);
         mInsertAction = menu.findItem(R.id.action_insert);
         mSettingAction = menu.findItem(R.id.action_settings);
 
         mSearchAction.setVisible(!MainActivity.isDrawerOpen());
 
         if (mSearchOpened) {
-            mSearchAction.setIcon(mIconCloseSearch);
+            mSearchAction.setVisible(false);
             mInsertAction.setVisible(false);
             mSettingAction.setVisible(false);
+            mCloseSearchAction.setVisible(true);
+            filterSearch.setVisibility(View.VISIBLE);
+
         } else {
             mInsertAction.setVisible(true);
             mSettingAction.setVisible(true);
+            mSearchAction.setVisible(true);
+            mCloseSearchAction.setVisible(false);
+            filterSearch.setVisibility(View.GONE);
         }
 
         return super.onPrepareOptionsMenu(menu);
@@ -387,12 +395,10 @@ public class MainActivity extends AppCompatActivity
                 startActivityForResult(settingActivityCaller, settingsRequestCode);
                 break;
             case R.id.action_search:
-                if (mSearchOpened) {
-                    closeSearchBar();
-                } else {
                     openSearchBar(mSearchQuery);
-                }
-
+                break;
+            case R.id.action_close_search:
+                    closeSearchBar();
                 break;
             case R.id.action_insert:
 
@@ -440,30 +446,29 @@ public class MainActivity extends AppCompatActivity
 
     private void openSearchBar(String queryText) {
 
-        // Set custom view on action bar.
-        ActionBar actionBar = getActionBar();
-        actionBar.setDisplayShowCustomEnabled(true);
-        actionBar.setCustomView(R.layout.search_bar);
 
-        // Search edit text field setup.
-        mSearchEt = (EditText) actionBar.getCustomView().findViewById(
-                R.id.etSearch);
+        mSearchEt = (EditText) findViewById(
+                R.id.filterSearch);
+
         if (mSearchEt != null) {
 
             mSearchEt.addTextChangedListener(new SearchWatcher());
             mSearchEt.setText(queryText);
             mSearchEt.requestFocus();
+            mSearchEt.setVisibility(View.VISIBLE);
         }
 
         // Change search icon accordingly.
         if (mSearchAction != null) {
 
-            mSearchAction.setIcon(mIconCloseSearch);
+            //mSearchAction.setIcon(mIconCloseSearch);
             mSearchOpened = true;
 
             mInsertAction.setVisible(false);
             mSettingAction.setVisible(false);
-
+            mSearchAction.setVisible(false);
+            mCloseSearchAction.setVisible(true);
+            filterSearch.setVisibility(View.VISIBLE);
             listSearchListener.startSearch();
 
         }
@@ -472,15 +477,17 @@ public class MainActivity extends AppCompatActivity
 
     private void closeSearchBar() {
 
-        // Remove custom view.
         listSearchListener.stopSearch();
-        getActionBar().setDisplayShowCustomEnabled(false);
-        mSearchQuery = "";
-        // Change search icon accordingly.
-        mSearchAction.setIcon(mIconOpenSearch);
+        mSearchEt = (EditText) findViewById(
+                R.id.filterSearch);
+
         mInsertAction.setVisible(true);
         mSettingAction.setVisible(true);
+        mSearchAction.setVisible(true);
+        mCloseSearchAction.setVisible(false);
+        filterSearch.setVisibility(View.GONE);
         mSearchOpened = false;
+        mSearchQuery = "";
 
     }
 

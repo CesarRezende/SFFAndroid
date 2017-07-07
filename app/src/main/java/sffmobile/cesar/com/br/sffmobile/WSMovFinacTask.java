@@ -84,7 +84,7 @@ public class WSMovFinacTask extends GenericWSTask {
 
 		if (!hasConnection()) {
 			errorMessages
-					.add("N�o foi possivel estabelecer conex�o com o servidor!");
+					.add("Não foi possivel estabelecer conexão com o servidor!");
 			return;
 		}
 
@@ -131,7 +131,7 @@ public class WSMovFinacTask extends GenericWSTask {
 		} catch (Exception e) {
 			e.printStackTrace();
 			errorMessages
-					.add("Descupe, um erro ocorreu ao tentar consultar a lista de movimenta��es.");
+					.add("Desculpe, um erro ocorreu ao tentar consultar a lista de movimentações.");
 		}
 	}
 
@@ -142,7 +142,7 @@ public class WSMovFinacTask extends GenericWSTask {
 
 		if (!hasConnection()) {
 			errorMessages
-					.add("N�o foi possivel estabelecer conex�o com o servidor!");
+					.add("Não foi possivel estabelecer conexão com o servidor!");
 			return;
 		}
 
@@ -196,7 +196,7 @@ public class WSMovFinacTask extends GenericWSTask {
 		} catch (Exception e) {
 			e.printStackTrace();
 			errorMessages
-					.add("Descupe, um erro ocorreu ao tentar salvar a movimenta��o.");
+					.add("Descupe, um erro ocorreu ao tentar salvar a movimentação.");
 		}
 	}
 
@@ -207,7 +207,7 @@ public class WSMovFinacTask extends GenericWSTask {
 
 		if (!hasConnection()) {
 			errorMessages
-					.add("N�o foi possivel estabelecer conex�o com o servidor!");
+					.add("Não foi possivel estabelecer conexão com o servidor!");
 			return;
 		}
 
@@ -267,7 +267,7 @@ public class WSMovFinacTask extends GenericWSTask {
 		} catch (Exception e) {
 			e.printStackTrace();
 			errorMessages
-					.add("Descupe, um erro ocorreu ao tentar salvar a movimenta��o.");
+					.add("Desculpe, um erro ocorreu ao tentar salvar a movimentação.");
 		}
 	}
 
@@ -303,7 +303,7 @@ public class WSMovFinacTask extends GenericWSTask {
                 return;
             } catch (Exception e) {
                 e.printStackTrace();
-                this.errorMessages.add("Descupe, um erro ocorreu ao tentar realizar a movimenta��o.");
+                this.errorMessages.add("Desculpe, um erro ocorreu ao tentar realizar a movimentação.");
                 return;
             }
         }else
@@ -319,7 +319,7 @@ public class WSMovFinacTask extends GenericWSTask {
 
 		if (!hasConnection()) {
 			errorMessages
-					.add("N�o foi possivel estabelecer conex�o com o servidor!");
+					.add("Não foi possivel estabelecer conexão com o servidor!");
 			return;
 		}
 
@@ -361,7 +361,7 @@ public class WSMovFinacTask extends GenericWSTask {
 		} catch (Exception e) {
 			e.printStackTrace();
 			errorMessages
-					.add("Descupe, um erro ocorreu ao tentar deletar a movimenta��o.");
+					.add("Desculpe, um erro ocorreu ao tentar deletar a movimentação.");
 		}
 	}
 

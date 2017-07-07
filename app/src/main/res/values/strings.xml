@@ -22,6 +22,7 @@
     <string name="cancel_button">Cancel</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="action_search">Pesquisa</string>
+    <string name="action_close_search">Fechar Pesquisa</string>s
     <string name="action_insert">Inserir</string>
     <string name="action_edit">Editar</string>
     <string name="action_erase">Apagar</string>

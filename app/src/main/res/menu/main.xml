@@ -18,4 +18,10 @@
         android:title="@string/action_insert"
         app:showAsAction="always" />
 
+    <item android:id="@+id/action_close_search"
+        android:icon="@mipmap/ic_action_close_search"
+        android:title="@string/action_close_search"
+        app:showAsAction="always" />
+
+
 </menu>
