@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close){
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
 
 
             public void onDrawerClosed(View view) {
@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         filterSearch = findViewById(R.id.filterSearch);
-        if(filterSearch != null)
+        if (filterSearch != null)
             filterSearch.setVisibility(View.GONE);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity
         final Menu menu = navigationView.getMenu();
 
 
-        for (int i =0; i < mMenuOptions.length; i++) {
+        for (int i = 0; i < mMenuOptions.length; i++) {
             //id do g rupo, id do item, ordem do item, nome do item
             menu.add(1, i, i, mMenuOptions[i]);
         }
@@ -214,20 +214,20 @@ public class MainActivity extends AppCompatActivity
         boolean firstError = true;
 
         if (webserviceAddress == null || webserviceAddress.equals("")) {
-            if (firstError)
-                errorMessage += "Por favor, configure Endereço Webservice!";
-            else
-                errorMessage += "\nPor favor, configure Endereço Webservice!";
+            if (!firstError)
+                errorMessage += "\n";
+
+            errorMessage += getResources().getString(R.string.msg_config_webservice);
 
             firstError = false;
             setOcurredError(true);
         }
 
         if (localWebserviceAddress == null || localWebserviceAddress.equals("")) {
-            if (firstError)
-                errorMessage += "Por favor, configure Endereço Webservice Rede Local!";
-            else
-                errorMessage += "\nPor favor, configure Endereço Webservice Rede Local!";
+            if (!firstError)
+                errorMessage += "\n";
+
+            errorMessage += getResources().getString(R.string.msg_config_webservice_local);
 
             firstError = false;
             setOcurredError(true);
@@ -236,8 +236,8 @@ public class MainActivity extends AppCompatActivity
         if (isOcurredError()) {
 
             AlertDialog dialog = new AlertDialog();
-            dialog.setTitle("Erro");
-            dialog.setContext( MainActivity.this);
+            dialog.setTitle(getResources().getString(R.string.error));
+            dialog.setContext(MainActivity.this);
             dialog.setMessage(errorMessage);
             dialog.setOnClickListener(new DialogInterface.OnClickListener() {
 
@@ -252,7 +252,7 @@ public class MainActivity extends AppCompatActivity
                 }
             });
 
-            dialog.show(getFragmentManager(), "Erro");
+            dialog.show(getFragmentManager(), getResources().getString(R.string.error));
 
             return;
         }
@@ -325,9 +325,7 @@ public class MainActivity extends AppCompatActivity
 
             finish();
             startActivity(getIntent());
-        }
-
-        else if (requestCode == MovFinancEditRequestCode) {
+        } else if (requestCode == MovFinancEditRequestCode) {
 
             if (resultCode == RESULT_OK) {
 
@@ -351,7 +349,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
@@ -395,10 +392,10 @@ public class MainActivity extends AppCompatActivity
                 startActivityForResult(settingActivityCaller, settingsRequestCode);
                 break;
             case R.id.action_search:
-                    openSearchBar(mSearchQuery);
+                openSearchBar(mSearchQuery);
                 break;
             case R.id.action_close_search:
-                    closeSearchBar();
+                closeSearchBar();
                 break;
             case R.id.action_insert:
 
@@ -461,7 +458,6 @@ public class MainActivity extends AppCompatActivity
         // Change search icon accordingly.
         if (mSearchAction != null) {
 
-            //mSearchAction.setIcon(mIconCloseSearch);
             mSearchOpened = true;
 
             mInsertAction.setVisible(false);
@@ -506,7 +502,7 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+
         int position = item.getItemId();
         SFFApp.setMenuPosition(position);
 
@@ -530,7 +526,7 @@ public class MainActivity extends AppCompatActivity
             startActivityForResult(loginActivitycaller, 1);
 
             return true;
-        }else if(mMenuOptions[position].equals("Sair")){
+        } else if (mMenuOptions[position].equals("Sair")) {
 
             SFFApp.setMenuPosition(0);
             finish();
@@ -673,13 +669,13 @@ public class MainActivity extends AppCompatActivity
                         task = new WSChartTask(getActivity(), this,
                                 CHART_REQUEST_TASK);
                         task.execute(this.chartList);
-                        setListAdapter(new ChartDataAdapter(getActivity(),layout, R.id.textview1,
+                        setListAdapter(new ChartDataAdapter(getActivity(), layout, R.id.textview1,
                                 this.chartList));
                     }
-                    if(this.chartList == null)
+                    if (this.chartList == null)
                         this.chartList = new ArrayList();
 
-                    setListAdapter(new ChartDataAdapter(getActivity(),layout, R.id.textview1, this.chartList));
+                    setListAdapter(new ChartDataAdapter(getActivity(), layout, R.id.textview1, this.chartList));
                     break;
                 case "Movimentação Finaceira":
                     if ((this.listMovFinac == null || this.listMovFinac.size() <= 0)
@@ -701,22 +697,22 @@ public class MainActivity extends AppCompatActivity
                 case "Entrada Variavel":
                     initLayout();
                     this.listView.setAdapter(new ArrayAdapter<String>(
-                            getActivity(), layout, new String[] { "" }));
+                            getActivity(), layout, new String[]{""}));
                     break;
                 case "Saida Variavel":
                     initLayout();
                     this.listView.setAdapter(new ArrayAdapter<String>(
-                            getActivity(), layout, new String[] { "" }));
+                            getActivity(), layout, new String[]{""}));
                     break;
                 case "Entrada Fixa":
                     initLayout();
                     this.listView.setAdapter(new ArrayAdapter<String>(
-                            getActivity(), layout, new String[] { "" }));
+                            getActivity(), layout, new String[]{""}));
                     break;
                 case "Saida Fixa":
                     initLayout();
                     this.listView.setAdapter(new ArrayAdapter<String>(
-                            getActivity(), layout, new String[] { "" }));
+                            getActivity(), layout, new String[]{""}));
                     break;
 
                 default:
@@ -760,11 +756,11 @@ public class MainActivity extends AppCompatActivity
             lockScreenOrientation();
 
             if (requestCode == MOVFINANC_DELETE_REQUEST_TASK)
-                pDialog = ProgressDialog.show(getActivity(), "Deletando",
-                        "Deletando. Por favor aguarde...", true);
+                pDialog = ProgressDialog.show(getActivity(), getContext().getResources().getString(R.string.deleting),
+                        getContext().getResources().getString(R.string.msg_deleting_wait), true);
             else
-                pDialog = ProgressDialog.show(getActivity(), "Carregando",
-                        "Carregando. Por favor aguarde...", true);
+                pDialog = ProgressDialog.show(getActivity(), getContext().getResources().getString(R.string.loading),
+                        getContext().getResources().getString(R.string.msg_loading_wait), true);
 
         }
 
@@ -824,7 +820,7 @@ public class MainActivity extends AppCompatActivity
                 }
 
                 AlertDialog dialog = new AlertDialog();
-                dialog.setTitle("Erro");
+                dialog.setTitle(getResources().getString(R.string.error));
                 dialog.setContext(getActivity());
                 dialog.setMessage(errorMessage);
                 dialog.setOnClickListener(new DialogInterface.OnClickListener() {
@@ -837,7 +833,7 @@ public class MainActivity extends AppCompatActivity
                     }
                 });
 
-                dialog.show(getFragmentManager(), "Erro");
+                dialog.show(getFragmentManager(), getResources().getString(R.string.error));
             }
 
         }
@@ -918,7 +914,7 @@ public class MainActivity extends AppCompatActivity
                             .findMovimentacaoFinanceira(listMovFinac,
                                     movFinanc.getId());
 
-                    if (SFFUtil.IsDateThatYearMonth(dataReferencia,
+                    if (SFFUtil.isDateThatYearMonth(dataReferencia,
                             SFFApp.getYear(), SFFApp.getMonth()))
                         listMovFinac.set(listMovFinac.indexOf(oldMovFinanc),
                                 movFinanc);
@@ -934,7 +930,7 @@ public class MainActivity extends AppCompatActivity
                                 .findMovimentacaoFinanceira(filtedListMovFinac,
                                         movFinanc.getId());
 
-                        if (SFFUtil.IsDateThatYearMonth(dataReferencia,
+                        if (SFFUtil.isDateThatYearMonth(dataReferencia,
                                 SFFApp.getYear(), SFFApp.getMonth()))
                             filtedListMovFinac.set(
                                     filtedListMovFinac.indexOf(oldMovFinanc),
@@ -961,7 +957,7 @@ public class MainActivity extends AppCompatActivity
                     Date dataReferencia = movFinanc.getDataRealizada() != null ? movFinanc
                             .getDataRealizada() : movFinanc.getDataPrevista();
 
-                    if (SFFUtil.IsDateThatYearMonth(dataReferencia,
+                    if (SFFUtil.isDateThatYearMonth(dataReferencia,
                             SFFApp.getYear(), SFFApp.getMonth()))
                         listMovFinac.add(movFinanc);
 
@@ -970,7 +966,7 @@ public class MainActivity extends AppCompatActivity
 
                     if (inSearch) {
 
-                        if (SFFUtil.IsDateThatYearMonth(dataReferencia,
+                        if (SFFUtil.isDateThatYearMonth(dataReferencia,
                                 SFFApp.getYear(), SFFApp.getMonth()))
                             filtedListMovFinac.add(movFinanc);
 
@@ -1055,42 +1051,41 @@ public class MainActivity extends AppCompatActivity
             ConfirmDialog dialog = null;
             final MovimentacaoFinanceira movFinac = (MovimentacaoFinanceira) mode
                     .getTag();
-
             switch (item.getItemId()) {
                 case R.id.action_accomplish:
-                    confirmMsg = "Tem certeza que deseja realizar a movimentação \""
-                            + movFinac.getDescricao() + "\" ?";
-                        dialog = new ConfirmDialog();
-                        dialog.setTitle("Confime");
-                        dialog.setMessage(confirmMsg);
-                        dialog.setContext(getActivity());
-                        dialog.setOnOkClickListener(
-                                 new DialogInterface.OnClickListener() {
+                    confirmMsg = SFFUtil.buildMessage(getContext().getResources().getString(R.string.msg_confirm_accomplish),
+                            movFinac.getDescricao());
+                    dialog = new ConfirmDialog();
+                    dialog.setTitle(getContext().getResources().getString(R.string.confirm));
+                    dialog.setMessage(confirmMsg);
+                    dialog.setContext(getActivity());
+                    dialog.setOnOkClickListener(
+                            new DialogInterface.OnClickListener() {
 
-                            @Override
-                            public void onClick(DialogInterface dialog,
-                                                int which) {
-                                task = new WSMovFinacTask(getActivity(),
-                                        contentFragment, listMovFinac,
-                                        MOVFINANC_ACCOMPLISH_REQUEST_TASK);
-                                task.execute(
-                                        WSMovFinacTask.WebServiceMethod.ACCOMPLISHING,
-                                        movFinac, listMovFinac,
-                                        filtedListMovFinac, inSearch);
+                                @Override
+                                public void onClick(DialogInterface dialog,
+                                                    int which) {
+                                    task = new WSMovFinacTask(getActivity(),
+                                            contentFragment, listMovFinac,
+                                            MOVFINANC_ACCOMPLISH_REQUEST_TASK);
+                                    task.execute(
+                                            WSMovFinacTask.WebServiceMethod.ACCOMPLISHING,
+                                            movFinac, listMovFinac,
+                                            filtedListMovFinac, inSearch);
 
-                            }
-                        });
-                        dialog.setOnCancelClickListener(
-                        new DialogInterface.OnClickListener() {
+                                }
+                            });
+                    dialog.setOnCancelClickListener(
+                            new DialogInterface.OnClickListener() {
 
-                            @Override
-                            public void onClick(DialogInterface dialog,
-                                                int which) {
+                                @Override
+                                public void onClick(DialogInterface dialog,
+                                                    int which) {
 
-                            }
-                        });
+                                }
+                            });
 
-                    dialog.show(getFragmentManager(), "Confirmation");
+                    dialog.show(getFragmentManager(), getContext().getResources().getString(R.string.confirm));
 
                     mode.finish();
                     return true;
@@ -1106,38 +1101,38 @@ public class MainActivity extends AppCompatActivity
                     mode.finish();
                     return true;
                 case R.id.action_erase:
-                    confirmMsg = "Tem certeza que deseja apagar a movimentação \""
-                            + movFinac.getDescricao() + "\" ?";
-                        dialog = new ConfirmDialog();
-                        dialog.setTitle("Confime");
-                        dialog.setMessage(confirmMsg);
-                        dialog.setContext(getActivity());
-                        dialog.setOnOkClickListener( new DialogInterface.OnClickListener() {
+                    confirmMsg = SFFUtil.buildMessage(getContext().getResources().getString(R.string.msg_confirm_delete),
+                            movFinac.getDescricao());
+                    dialog = new ConfirmDialog();
+                    dialog.setTitle(getContext().getResources().getString(R.string.confirm));
+                    dialog.setMessage(confirmMsg);
+                    dialog.setContext(getActivity());
+                    dialog.setOnOkClickListener(new DialogInterface.OnClickListener() {
 
-                            @Override
-                            public void onClick(DialogInterface dialog,
-                                                int which) {
+                        @Override
+                        public void onClick(DialogInterface dialog,
+                                            int which) {
 
-                                task = new WSMovFinacTask(getActivity(),
-                                        contentFragment, listMovFinac,
-                                        MOVFINANC_DELETE_REQUEST_TASK);
-                                task.execute(
-                                        WSMovFinacTask.WebServiceMethod.DELETING,
-                                        movFinac, listMovFinac,
-                                        filtedListMovFinac, inSearch);
-                            }
-                        });
+                            task = new WSMovFinacTask(getActivity(),
+                                    contentFragment, listMovFinac,
+                                    MOVFINANC_DELETE_REQUEST_TASK);
+                            task.execute(
+                                    WSMovFinacTask.WebServiceMethod.DELETING,
+                                    movFinac, listMovFinac,
+                                    filtedListMovFinac, inSearch);
+                        }
+                    });
 
-                        dialog.setOnCancelClickListener( new DialogInterface.OnClickListener() {
+                    dialog.setOnCancelClickListener(new DialogInterface.OnClickListener() {
 
-                            @Override
-                            public void onClick(DialogInterface dialog,
-                                                int which) {
+                        @Override
+                        public void onClick(DialogInterface dialog,
+                                            int which) {
 
-                            }
-                        });
+                        }
+                    });
 
-                    dialog.show(getFragmentManager(), "Confirmation");
+                    dialog.show(getFragmentManager(), getContext().getResources().getString(R.string.confirm));
                     mode.finish();
                     return true;
                 default:
@@ -1154,8 +1149,8 @@ public class MainActivity extends AppCompatActivity
 
     private static class ChartDataAdapter extends ArrayAdapter<ChartItem> {
         public ChartDataAdapter(Context context, int resource,
-                                int textViewResourceId,List<ChartItem> objects) {
-            super(context, resource, textViewResourceId , objects);
+                                int textViewResourceId, List<ChartItem> objects) {
+            super(context, resource, textViewResourceId, objects);
         }
 
         public View getView(int position, View convertView, ViewGroup parent) {
@@ -1185,7 +1180,7 @@ public class MainActivity extends AppCompatActivity
             this.listMovFinac = listMovFinac;
         }
 
-        @SuppressLint({ "ViewHolder", "NewApi" })
+        @SuppressLint({"ViewHolder", "NewApi"})
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = (LayoutInflater) context

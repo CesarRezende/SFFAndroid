@@ -23,7 +23,7 @@ public class WSLoginTask extends GenericWSTask {
 				"validateUser");
 
 		if (!hasConnection()) {
-			errorMessages.add("Não foi possivel estabelecer conexão com o servidor!");
+			errorMessages.add(context.getResources().getString(R.string.msg_could_not_conect_to_server));
 			return "";
 		}
 
@@ -51,14 +51,14 @@ public class WSLoginTask extends GenericWSTask {
 			
 			if(!Boolean.valueOf(webMsg)){
 				errorMessages
-				.add("Usuario ou senha invalido!");
+				.add(context.getResources().getString(R.string.msg_invalid_user_or_password));
 			}
 
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 			errorMessages
-					.add("Desculpe, um erro ocorreu ao efetuar login no sistema.");
+					.add(context.getResources().getString(R.string.msg_login_error));
 		}
 		return "";
 	}

@@ -20,14 +20,20 @@ import org.ksoap2.transport.HttpTransportSE;
 import org.xmlpull.v1.XmlPullParser;
 
 public class WSChartTask extends GenericWSTask {
+
     public WSChartTask(Context context, TaskListener listener, int requestCode) {
         super(context, listener, requestCode);
     }
 
     protected String doInBackground(Object... params) {
         callWSGetCurrentSpendingsChart((ArrayList) params[0]);
+
+        if(errorMessages.size() <= 0)
         callWSGetSpendingsChart((ArrayList) params[0]);
+
+        if(errorMessages.size() <= 0)
         callWSGetTipoGastoChart((ArrayList) params[0]);
+
         return XmlPullParser.NO_NAMESPACE;
     }
 
@@ -111,7 +117,7 @@ public class WSChartTask extends GenericWSTask {
                 return;
             }
         }
-        this.errorMessages.add("N�o foi possivel estabelecer conex�o com o servidor!");
+        this.errorMessages.add(context.getResources().getString(R.string.msg_could_not_conect_to_server));
     }
 
     protected void callWSGetSpendingsChart(ArrayList<ChartItem> chartList) {
@@ -166,7 +172,7 @@ public class WSChartTask extends GenericWSTask {
                 return;
             }
         }
-        this.errorMessages.add("N\u00e3o foi possivel estabelecer conex\u00e3o com o servidor!");
+        this.errorMessages.add(context.getResources().getString(R.string.msg_could_not_conect_to_server));
     }
 
     protected void callWSGetCurrentSpendingsChart(ArrayList<ChartItem> chartList) {
@@ -219,6 +225,6 @@ public class WSChartTask extends GenericWSTask {
                 return;
             }
         }
-        this.errorMessages.add("N\u00e3o foi possivel estabelecer conex\u00e3o com o servidor!");
+        this.errorMessages.add(context.getResources().getString(R.string.msg_could_not_conect_to_server));
     }
 }

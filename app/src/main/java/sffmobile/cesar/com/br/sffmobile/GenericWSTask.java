@@ -46,7 +46,6 @@ public abstract class GenericWSTask extends AsyncTask<Object, Void, String> {
 
 	@Override
 	protected void onPostExecute(String result) {
-		// TODO Auto-generated method stub
 		super.onPostExecute(result);
 	}
 	
@@ -58,12 +57,12 @@ public abstract class GenericWSTask extends AsyncTask<Object, Void, String> {
 		
 		
 		if(localWebserviceAddress == null || localWebserviceAddress.equals("")){
-			errorMessages.add("Por favor, configure Endereço Webservice Rede Local!");
+			errorMessages.add(context.getResources().getString(R.string.msg_config_webservice_local));
 			return false;
 		}
 		
 		if(webserviceAddress == null || webserviceAddress.equals("")){
-			errorMessages.add("Por favor, configure Endereço Webservice!");
+			errorMessages.add(context.getResources().getString(R.string.msg_config_webservice));
 			return false;
 		}
 		

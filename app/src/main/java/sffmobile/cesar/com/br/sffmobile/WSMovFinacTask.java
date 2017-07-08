@@ -84,7 +84,7 @@ public class WSMovFinacTask extends GenericWSTask {
 
 		if (!hasConnection()) {
 			errorMessages
-					.add("Não foi possivel estabelecer conexão com o servidor!");
+					.add(context.getResources().getString(R.string.msg_could_not_conect_to_server));
 			return;
 		}
 
@@ -131,7 +131,7 @@ public class WSMovFinacTask extends GenericWSTask {
 		} catch (Exception e) {
 			e.printStackTrace();
 			errorMessages
-					.add("Desculpe, um erro ocorreu ao tentar consultar a lista de movimentações.");
+					.add(context.getResources().getString(R.string.msg_loading_activity_mov_error));
 		}
 	}
 
@@ -142,7 +142,7 @@ public class WSMovFinacTask extends GenericWSTask {
 
 		if (!hasConnection()) {
 			errorMessages
-					.add("Não foi possivel estabelecer conexão com o servidor!");
+					.add(context.getResources().getString(R.string.msg_could_not_conect_to_server));
 			return;
 		}
 
@@ -196,7 +196,7 @@ public class WSMovFinacTask extends GenericWSTask {
 		} catch (Exception e) {
 			e.printStackTrace();
 			errorMessages
-					.add("Descupe, um erro ocorreu ao tentar salvar a movimentação.");
+					.add(context.getResources().getString(R.string.msg_saving_activity_mov_error));
 		}
 	}
 
@@ -207,7 +207,7 @@ public class WSMovFinacTask extends GenericWSTask {
 
 		if (!hasConnection()) {
 			errorMessages
-					.add("Não foi possivel estabelecer conexão com o servidor!");
+					.add(context.getResources().getString(R.string.msg_could_not_conect_to_server));
 			return;
 		}
 
@@ -267,7 +267,7 @@ public class WSMovFinacTask extends GenericWSTask {
 		} catch (Exception e) {
 			e.printStackTrace();
 			errorMessages
-					.add("Desculpe, um erro ocorreu ao tentar salvar a movimentação.");
+					.add(context.getResources().getString(R.string.msg_saving_activity_mov_error));
 		}
 	}
 
@@ -303,11 +303,11 @@ public class WSMovFinacTask extends GenericWSTask {
                 return;
             } catch (Exception e) {
                 e.printStackTrace();
-                this.errorMessages.add("Desculpe, um erro ocorreu ao tentar realizar a movimentação.");
+                this.errorMessages.add(context.getResources().getString(R.string.msg_accomplish_activity_mov_error));
                 return;
             }
         }else
-        	this.errorMessages.add("N�o foi possivel estabelecer conex�o com o servidor!");
+        	this.errorMessages.add(context.getResources().getString(R.string.msg_could_not_conect_to_server));
     }
 	
 	protected void callWSDeleteMovimentacaoFinanceira(
@@ -319,7 +319,7 @@ public class WSMovFinacTask extends GenericWSTask {
 
 		if (!hasConnection()) {
 			errorMessages
-					.add("Não foi possivel estabelecer conexão com o servidor!");
+					.add(context.getResources().getString(R.string.msg_could_not_conect_to_server));
 			return;
 		}
 
@@ -361,7 +361,7 @@ public class WSMovFinacTask extends GenericWSTask {
 		} catch (Exception e) {
 			e.printStackTrace();
 			errorMessages
-					.add("Desculpe, um erro ocorreu ao tentar deletar a movimentação.");
+					.add(context.getResources().getString(R.string.msg_deleting_activity_mov_error));
 		}
 	}
 

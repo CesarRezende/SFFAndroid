@@ -28,8 +28,8 @@ public class ConfirmDialog extends DialogFragment{
 		dialog.setCanceledOnTouchOutside(false);
 		dialog.setMessage(this.message);
 		
-		dialog.setButton(DialogInterface.BUTTON_NEGATIVE,"CANCELAR", this.onCancelClickListener);
-		dialog.setButton(DialogInterface.BUTTON_POSITIVE,"OK", this.onOkClickListener);
+		dialog.setButton(DialogInterface.BUTTON_NEGATIVE,context.getResources().getString(R.string.cancel_button), this.onCancelClickListener);
+		dialog.setButton(DialogInterface.BUTTON_POSITIVE,context.getResources().getString(R.string.ok_button), this.onOkClickListener);
 		
 		return dialog;
 	}

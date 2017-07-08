@@ -55,20 +55,20 @@ public class LoginActivity extends AppCompatActivity implements TaskListener {
 				boolean firstError = true;
 
 				if (userID.equals("")) {
-					if (firstError)
-						errorMessage += "*Campo Usuário é obrigatório";
-					else
-						errorMessage += "\n*Campo Usuário é obrigatório";
+					if (!firstError)
+						errorMessage += "\n";
+
+					errorMessage += getResources().getString(R.string.msg_username_required);
 
 					firstError = false;
 					ocurredError = true;
 				}
 
 				if (password.equals("")) {
-					if (firstError)
-						errorMessage += "*Campo Senha é obrigatório";
-					else
-						errorMessage += "\n*Campo Senha é obrigatório";
+					if (!firstError)
+						errorMessage += "\n";
+
+					errorMessage += getResources().getString(R.string.msg_password_required);
 
 					firstError = false;
 					ocurredError = true;
@@ -76,10 +76,10 @@ public class LoginActivity extends AppCompatActivity implements TaskListener {
 
 				if (!userID.equals("")
 						&& (userID.length() < 3 || userID.length() > 30)) {
-					if (firstError)
-						errorMessage += "*Nome do Usuario deve conter de 3 a 30 caracteres";
-					else
-						errorMessage += "\n*Nome do Usuario deve conter de 3 a 30 caracteres";
+					if (!firstError)
+						errorMessage += "\n";
+
+					errorMessage += getResources().getString(R.string.msg_username_wrong_length);
 
 					firstError = false;
 					ocurredError = true;
@@ -87,17 +87,17 @@ public class LoginActivity extends AppCompatActivity implements TaskListener {
 
 				if (!password.equals("")
 						&& (password.length() < 6 || password.length() > 30)) {
-					if (firstError)
-						errorMessage += "*Senha do Usuario deve conter de 6 a 30 caracteres";
-					else
-						errorMessage += "\n*Senha do Usuario deve conter de 6 a 30 caracteres";
+					if (!firstError)
+						errorMessage += "\n";
+
+					errorMessage += getResources().getString(R.string.msg_password_wrong_length);
 
 					firstError = false;
 					ocurredError = true;
 				}
 
 				AlertDialog dialog = new AlertDialog();
-				dialog.setTitle("Erro");
+				dialog.setTitle(getResources().getString(R.string.error));
 				dialog.setContext( LoginActivity.this);
 				dialog.setMessage(errorMessage);
 				dialog.setOnClickListener(
@@ -116,7 +116,7 @@ public class LoginActivity extends AppCompatActivity implements TaskListener {
 
 				if (ocurredError){
 					lockScreenOrientation();
-					dialog.show(getFragmentManager(), "Erro");					
+					dialog.show(getFragmentManager(), getResources().getString(R.string.error));
 					return;
 				}
 
@@ -147,20 +147,20 @@ public class LoginActivity extends AppCompatActivity implements TaskListener {
 		boolean firstError = true;
 
 		if (webserviceAddress == null || webserviceAddress.equals("")) {
-			if (firstError)
-				errorMessage += "Por favor, configure Endereço Webservice!";
-			else
-				errorMessage += "\nPor favor, configure Endereço Webservice!";
+			if (!firstError)
+				errorMessage += "\n";
+
+			getResources().getString(R.string.msg_config_webservice);
 
 			firstError = false;
 			ocurredError = true;
 		}
 
 		if (localWebserviceAddress == null || localWebserviceAddress.equals("")) {
-			if (firstError)
-				errorMessage += "Por favor, configure Endereço Webservice Rede Local!";
-			else
-				errorMessage += "\nPor favor, configure Endereço Webservice Rede Local!";
+			if (!firstError)
+				errorMessage += "\n";
+
+			getResources().getString(R.string.msg_config_webservice_local);
 
 			firstError = false;
 			ocurredError = true;
@@ -169,7 +169,7 @@ public class LoginActivity extends AppCompatActivity implements TaskListener {
 		if (ocurredError) {
 			lockScreenOrientation();
 			AlertDialog dialog = new AlertDialog();
-			dialog.setTitle("Erro");
+			dialog.setTitle(getResources().getString(R.string.error));
 			dialog.setContext( LoginActivity.this);
 			dialog.setMessage(errorMessage);
 			dialog.setOnClickListener( new DialogInterface.OnClickListener() {
@@ -186,7 +186,7 @@ public class LoginActivity extends AppCompatActivity implements TaskListener {
 						}
 					});
 
-			dialog.show(getFragmentManager(), "Erro");
+			dialog.show(getFragmentManager(), getResources().getString(R.string.error));
 
 			return;
 		}
@@ -236,8 +236,8 @@ public class LoginActivity extends AppCompatActivity implements TaskListener {
 	@Override
 	public void onTaskStarted(int requestCode) {
 		lockScreenOrientation();
-		pDialog = ProgressDialog.show(LoginActivity.this, "Login",
-				"Realizando login. Por favor aguarde...", true);
+		pDialog = ProgressDialog.show(LoginActivity.this, getResources().getString(R.string.login_label),
+				getResources().getString(R.string.msg_login_wait), true);
 
 	}
 
@@ -288,7 +288,7 @@ public class LoginActivity extends AppCompatActivity implements TaskListener {
 
 			
 			AlertDialog dialog = new AlertDialog();
-			dialog.setTitle("Erro");
+			dialog.setTitle(getResources().getString(R.string.error));
 			dialog.setContext( LoginActivity.this);
 			dialog.setMessage(errorMessage);
 			dialog.setOnClickListener(
@@ -308,7 +308,7 @@ public class LoginActivity extends AppCompatActivity implements TaskListener {
 						}
 					});
 
-			dialog.show(getFragmentManager(), "Erro");
+			dialog.show(getFragmentManager(), getResources().getString(R.string.error));
 			
 			
 			

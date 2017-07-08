@@ -58,7 +58,7 @@ public class WSTipoGastoTask extends GenericWSTask {
 				"getAllTipoGasto");
 
 		if (!hasConnection()) {
-			errorMessages.add("N�o foi possivel estabelecer conex�o com o servidor!");
+			errorMessages.add(context.getResources().getString(R.string.msg_could_not_conect_to_server));
 			return;
 		}
 
@@ -99,7 +99,7 @@ public class WSTipoGastoTask extends GenericWSTask {
 		} catch (Exception e) {
 			e.printStackTrace();
 			errorMessages
-					.add("Descupe, um erro ocorreu ao tentar consultar a lista de tipo de gasto.");
+					.add(context.getResources().getString(R.string.msg_loading_spend_type_error));
 		}
 	}
 }

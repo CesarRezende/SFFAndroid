@@ -1,11 +1,6 @@
 <resources>
-    <string name="app_name">Sistema Familiar Financeiro</string>
-
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-
-    <string name="action_settings">Configurações</string>
-
+    <!--Configurações-->
+    <!--Opções do Menu-->
     <string-array name="menu_options">
         <item>Dashboard</item>
         <item>Movimentação Finaceira</item>
@@ -17,10 +12,13 @@
         <item>Sair</item>
     </string-array>
 
+    <!--Labels-->
+    <string name="app_name">Sistema Familiar Financeiro</string>
     <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
     <string name="ok_button">OK</string>
     <string name="cancel_button">Cancel</string>
-    <string name="drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Configurações</string>
     <string name="action_search">Pesquisa</string>
     <string name="action_close_search">Fechar Pesquisa</string>s
     <string name="action_insert">Inserir</string>
@@ -53,13 +51,50 @@
     <string name="movfinanc_interest_rate_label">Juros:</string>
     <string name="movfinanc_spend_type_label">Tipo Gasto:</string>
     <string name="movfinanc_descr_label">Descrição:</string>
-
-    <string name="title_activity_login">Sistema Financeiro Familiar</string>
+    <string name="alert_dialog_title">Atenção</string>
     <string name="title_activity_date_chooser">Calendário</string>
     <string name="login_label">Login</string>
     <string name="login_user_label">Usuario:</string>
     <string name="login_password_label">Senha:</string>
     <string name="login_exit_button">Sair</string>
+    <string name="title_activity_login">Sistema Financeiro Familiar</string>
+    <string name="error">Erro</string>
+    <string name="deleting">Excluindo</string>
+    <string name="loading">Carregando</string>
+    <string name="confirm">Confirme</string>
+    <string name="saving">Salvando</string>
 
-    <string name="alert_dialog_title">Atenção</string>
+    <!--Mensagens-->
+    <string name="navigation_drawer_open">Abrir menu lateral</string>
+    <string name="navigation_drawer_close">Fechar menu lateral</string>
+    <string name="msg_config_webservice_local">Por favor, configure Endereço Webservice Rede Local!</string>
+    <string name="msg_config_webservice">Por favor, configure Endereço Webservice!</string>
+    <string name="msg_username_required">*Campo Usuário é obrigatório</string>
+    <string name="msg_password_required">*Campo Senha é obrigatório</string>
+    <string name="msg_username_wrong_length">*Nome do Usuario deve conter de 3 a 30 caracteres</string>
+    <string name="msg_password_wrong_length">*Senha do Usuario deve conter de 6 a 30 caracteres</string>
+    <string name="msg_login_wait">Realizando login. Por favor aguarde...</string>
+    <string name="msg_deleting_wait">Deletando. Por favor aguarde...</string>
+    <string name="msg_loading_wait">Carregando. Por favor aguarde...</string>
+    <string name="msg_saving_wait">Salvando. Por favor aguarde...</string>
+    <string name="msg_confirm_accomplish">Tem certeza que deseja realizar a movimentação \"{0}\"?</string>
+    <string name="msg_confirm_delete">Tem certeza que deseja excluir a movimentação \"{0}\"?</string>
+    <string name="msg_description_required">*Campo Descrição é obrigatório</string>
+    <string name="msg_description_wrong_length">*O campo Descrição deve conter de 3 a 30 caracteres</string>
+    <string name="msg_value_required">*Campo Valor é obrigatório</string>
+    <string name="msg_value_bigger_than_zero">*Campo Valor deve ser maior que zero</string>
+    <string name="msg_expecteddate_required">*Campo Data Prevista é obrigatório</string>
+    <string name="msg_expecteddate_invalid_value">*Formato da Data Prevista é invalido</string>
+    <string name="msg_fulfillmentdate_required">*Campo Data Realizada é obrigatório</string>
+    <string name="msg_fulfillmentdate_invalid_value">*Formato da Data Realizada é invalido</string>
+    <string name="msg_fulfillmentdate_greater_than_currentdate">*A Data Realizada não deve ser superior a data atual</string>
+    <string name="msg_could_not_conect_to_server">Não foi possivel estabelecer conexão com o servidor!</string>
+    <string name="msg_invalid_user_or_password">Usuario ou senha invalido!</string>
+    <string name="msg_login_error">Desculpe, um erro ocorreu ao efetuar login no sistema.</string>
+    <string name="msg_loading_activity_mov_error">Desculpe, um erro ocorreu ao tentar consultar a lista de movimentações.</string>
+    <string name="msg_saving_activity_mov_error">Desculpe, um erro ocorreu ao tentar salvar a movimentação.</string>
+    <string name="msg_accomplish_activity_mov_error">Desculpe, um erro ocorreu ao tentar realizar a movimentação.</string>
+    <string name="msg_deleting_activity_mov_error">Desculpe, um erro ocorreu ao tentar excluir a movimentação.</string>
+    <string name="msg_loading_spend_type_error">Desculpe, um erro ocorreu ao tentar consultar a lista de tipo de gasto.</string>
+
 </resources>
